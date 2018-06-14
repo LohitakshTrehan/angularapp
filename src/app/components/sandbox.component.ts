@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Customer } from './Customer';
 @Component({
     selector:'sandbox',
     // template:`<h1>
@@ -40,14 +41,29 @@ export class SandboxComponent{
     //     return this.age;
     // }
     customer:Customer;
+    customers:Customer[];
     constructor(){
         this.customer = {
             id:1,
             name:"John Doe",
             email:"a@b.com"
         }
+        this.customers=[
+            {
+                id:1,
+                name:"John Doe",
+                email:"a@b.com"
+            },
+            {
+                id:2,
+                name:"Steven",
+                email:"b@c.com"
+            },
+            {
+                id:1,
+                name:"Jimmy",
+                email:"c@d.com"
+            } 
+        ]
     }
-}
-interface Customer{
-    id:number, name:string, email:string
 }
