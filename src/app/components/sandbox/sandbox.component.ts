@@ -10,7 +10,8 @@ import { Customer } from './Customer';
     //           </h2>
     //           <p>{{showAge()}}</p>
     // `
-    template:`<h1>hello world</h1>`
+    templateUrl:`./sandbox.component.html`,
+    styleUrls:['./sandbox.component.css']
 })
 
 export class SandboxComponent{
@@ -40,30 +41,30 @@ export class SandboxComponent{
     // showAge(){
     //     return this.age;
     // }
-    customer:Customer;
-    customers:Customer[];
-    constructor(){
-        this.customer = {
-            id:1,
-            name:"John Doe",
-            email:"a@b.com"
-        }
-        this.customers=[
-            {
-                id:1,
-                name:"John Doe",
-                email:"a@b.com"
-            },
-            {
-                id:2,
-                name:"Steven",
-                email:"b@c.com"
-            },
-            {
-                id:1,
-                name:"Jimmy",
-                email:"c@d.com"
-            } 
-        ]
-    }
+    // customer:Customer;
+    // customers:Customer[];
+    // constructor(){
+    //     this.customer = {
+    //         id:1,
+    //         name:"John Doe",
+    //         email:"a@b.com"
+    //     }
+    //     this.customers=[
+    //         {
+    //             id:1,
+    //             name:"John Doe",
+    //             email:"a@b.com"
+    //         },
+    //         {
+    //             id:2,
+    //             name:"Steven",
+    //             email:"b@c.com"
+    //         },
+    //         {
+    //             id:1,
+    //             name:"Jimmy",
+    //             email:"c@d.com"
+    //         } 
+    //     ]
+    // }
 }
