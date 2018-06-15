@@ -6,17 +6,25 @@ import { Customer } from './Customer';
         <h1>
             Hello World
         </h1>
-        <input type="text" (keyup)="fireEvent($event)">
-        <hr>
-        <div>{{text}}</div>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" [(ngModel)]="name" name="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" [(ngModel)]="age" name="age" class="form-control">
+                </div>
+                <input type="submit" value="Submit" class="btn btn-success">
+            </form>
+            <h4> Name: {{name}} </h4>
+            <h4> Age: {{age}} </h4>
+        </div>
     `
 })
-// pipes in Angular
+// For using ngModel import in app.module
 export class SandboxComponent{
-    text:string="";
-    fireEvent(e){
-        console.log(e.type);
-        this.text = e.target.value;
-    }
-    // keydown, focus, blur, cut, copy, paste
+    name:string = "";
+    age:number = 0;
 }
