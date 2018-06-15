@@ -6,22 +6,18 @@ import { Customer } from './Customer';
         <h1>
             Hello world
         </h1>
-        <div [style.font-size]="isSpecial ? 'x-large':'smaller'">Font size depends on isSpecial</div>
-        <div [ngStyle]="currentStyles">This div is initialy saveable and special</div>
+        <p>My Birthday is {{birthday | date | uppercase}}</p>
+        <p>My Birthday is {{birthday | date:"MM-dd-yyyy"}}</p>
+        <p>I was born in {{birthday | date:"yyyy"}}</p>
+        <p>I love {{'cake'|uppercase}}</p>
+        <p> I hate {{'DOGS' | lowercase}}</p>
+        <p>Your total is {{total | currency:"&#8377;"}}</p>
+        <p>Our fee is {{fee |percent}}</p>
     `
 })
-
+//pipes in Angular
 export class SandboxComponent{
-    isSpecial =true;
-    canSave = true;
-    currentStyles={};
-    setCurrentStyles(){
-        this.currentStyles={
-            'font-style':this.canSave?'italic':'normal',
-            'font-size':this.isSpecial?'24px':'12px'
-        }
-    }
-    constructor(){
-        this.setCurrentStyles();
-    }
+    birthday = new Date(1981,1,15);
+    total=500;
+    fee=0.3;
 }
