@@ -6,25 +6,33 @@ import { Customer } from './Customer';
         <h1>
             Hello world
         </h1>
-        <!-- 3 ways to bind properties -->
-        <div>
-            <img src="{{ imageUrl }}"> <!-- can only use strings here -->
-        </div>
-        <div>
-            <img [src]="imageUrl"><!-- in this method we can use booleans and other stuff-->
-        </div>
-        <div>
-            <img bind-src="imageUrl">
-        </div>
-        <h4>Image Location: <span [textContent]="imageUrl"></span></h4>
-        <hr>
-        <h2> Create Post </h2>
-        <p [hidden]="isUnchanged"> post is changed, pls save it</p>
-        <button [disabled]="isUnchanged">Save It</button>
-    `
+        <h4 [class.special]="isSpecial">This class binding is special</h4>
+        <h4 [ngClass]="currentClasses">This div is initially special and saveable</h4>
+        <!-- ngClass used to set multiple classes -->
+    `,
+    styles : [
+        `
+            .special{
+                color:red;
+            }
+            .saveable{
+                text-transform : uppercase;
+            }
+        `
+    ]
 })
 
 export class SandboxComponent{
-    imageUrl:string = "https://picsum.photos/200/100";
-    isUnchanged:boolean=false;
+    isSpecial:boolean = true;
+    canSave:boolean=true;
+    currentClasses={};
+    setCurrentClasses(){
+        this.currentClasses={
+            saveable: this.canSave,
+            special:this.isSpecial,
+        }
+    }
+    constructor(){
+        this.setCurrentClasses();
+    }
 }
