@@ -6,15 +6,13 @@ import { Customer } from './Customer';
         <h1>
             Hello World
         </h1>
-        <button (click)="changeValue()">change value</button>
-        <h1>{{text}}</h1>
+        <input type="text" (keyup)="fireEvent($event)">
     `
 })
 // pipes in Angular
 export class SandboxComponent{
-    b:boolean=false;
-    text:string="Hello World";
-    changeValue(){
-        this.text="Goodbye World";
+    fireEvent(e){
+        console.log(e.type);
     }
+    // keydown, focus, blur, cut, copy, paste
 }
