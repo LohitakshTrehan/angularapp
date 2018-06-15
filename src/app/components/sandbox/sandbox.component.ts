@@ -6,27 +6,61 @@ import { Customer } from './Customer';
         <h1>
             Hello World
         </h1>
-        <form (submit)="onSubmit()">
+        <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" [(ngModel)]="name" name="name">
+                <input
+                    type="text" 
+                    class="form-control" 
+                    [(ngModel)]="user.name" 
+                    name="name"
+                    #userName="ngModel"
+                    minlength="2"
+                    required
+                >
+                <div *ngIf="userName.hasError('required') && userName.touched" class="alert alert-danger">Name is Required</div>
+                <div *ngIf="userName.hasError('minlength') && userName.touched" class="alert alert-danger">Atleast make 2 characters</div>
             </div>
-            <input type="submit" class="btn btn-success" value="submit">
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="text" 
+                    class="form-control" 
+                    [(ngModel)]="user.email" 
+                    name="email"
+                    #userEmail="ngModel"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input
+                    type="number" 
+                    class="form-control" 
+                    [(ngModel)]="user.phone" 
+                    name="phone"
+                    #usePhone="ngModel"
+                    minlength="10"
+                    required
+                >
+            </div>
+            <input type="submit" class="btn btn-success" value="Submit">
         </form>
-        <hr>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let user of users">
-                {{user}}
-            </li>
-        </ul>
     `
 })
 // For using ngModel import in app.module
 export class SandboxComponent{
-    name:string="";
-    users:string[]=["jon doe","Marie","alex"]
-    onSubmit(){
-        this.users.push(this.name);
-        this.name="";
+    user = {
+        name:"",
+        email:"",
+        phone:""
+    }
+    onSubmit({value, valid}){
+        if(valid){
+            console.log(value);
+        }
+        else{
+            console.log("form is invalid");
+        }
     }
 }
