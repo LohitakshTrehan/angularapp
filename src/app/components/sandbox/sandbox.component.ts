@@ -6,18 +6,16 @@ import { Customer } from './Customer';
         <h1>
             Hello world
         </h1>
-        <p>My Birthday is {{birthday | date | uppercase}}</p>
-        <p>My Birthday is {{birthday | date:"MM-dd-yyyy"}}</p>
-        <p>I was born in {{birthday | date:"yyyy"}}</p>
-        <p>I love {{'cake'|uppercase}}</p>
-        <p> I hate {{'DOGS' | lowercase}}</p>
-        <p>Your total is {{total | currency:"&#8377;"}}</p>
-        <p>Our fee is {{fee |percent}}</p>
+        <button id="btn" (click)="fireEvent($event,'Hello')">Click Event</button>
     `
 })
 //pipes in Angular
 export class SandboxComponent{
-    birthday = new Date(1981,1,15);
-    total=500;
-    fee=0.3;
+    fireEvent(e,greeting){
+        console.log(greeting);
+        //console.log("button clicked");
+        console.log(e.target.id);
+        //mouse events like click,mouseover,mousedown,mouseup
+        //dblclick,drag,dragover
+    }
 }
