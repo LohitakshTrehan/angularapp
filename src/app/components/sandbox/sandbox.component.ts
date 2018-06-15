@@ -4,18 +4,17 @@ import { Customer } from './Customer';
     selector:'sandbox',
     template:`
         <h1>
-            Hello world
+            Hello World
         </h1>
-        <button id="btn" (click)="fireEvent($event,'Hello')">Click Event</button>
+        <button (click)="changeValue()">change value</button>
+        <h1>{{text}}</h1>
     `
 })
-//pipes in Angular
+// pipes in Angular
 export class SandboxComponent{
-    fireEvent(e,greeting){
-        console.log(greeting);
-        //console.log("button clicked");
-        console.log(e.target.id);
-        //mouse events like click,mouseover,mousedown,mouseup
-        //dblclick,drag,dragover
+    b:boolean=false;
+    text:string="Hello World";
+    changeValue(){
+        this.text="Goodbye World";
     }
 }
