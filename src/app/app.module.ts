@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SandboxComponent } from './components/sandbox/sandbox.component'
 import { UserComponent } from './components/user/user.component'
+import { DataService } from './services/data.services'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { UserComponent } from './components/user/user.component'
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DataService],          // Add services to Providers
   bootstrap: [AppComponent]
 })
 export class AppModule { }
