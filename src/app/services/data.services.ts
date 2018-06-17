@@ -13,7 +13,7 @@ export class DataService{
     getData(){
         this.data = new Observable(observer =>{
             setTimeout(() =>{
-                observer.next(1);
+                observer.next([1]);
             },1000);
             setTimeout(() =>{
                 observer.next(2);
