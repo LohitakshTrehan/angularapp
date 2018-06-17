@@ -8,7 +8,7 @@ import { DataService } from './../../services/data.services'
         <h1>
             Hello World
         </h1>
-        <form (submit)="onSubmit()">
+        <form (submit)="onSubmit(isEdit)">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" [(ngModel)]="user.name" name="name">
@@ -31,6 +31,7 @@ import { DataService } from './../../services/data.services'
                         Phone: {{user.phone}}
                     </li>
                 </ul>
+                <button class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edit</button>
                 <button class="btn btn-danger btn-sm" (click)="onDeleteClick(user.id)">Delete</button>
                 <br><br>
             </div>
@@ -42,18 +43,30 @@ export class SandboxComponent{
     //inject dependencies in constructor parameter
     users:any[];
     user={name:"",email:"",phone:""};
+    isEdit:boolean=false;
     constructor(public dataService:DataService){
         this.dataService.getUsers().subscribe(users =>{
             console.log(users);
             this.users=users;
         })
     }
-    onSubmit(){
-        this.dataService.addUser(this.user).subscribe(user => {
-            console.log("got response back as: ")
-            console.log(user);
-            this.users.unshift(user);//adds item at array begining
-        })
+    onSubmit(isEdit){
+        if(isEdit){
+            this.dataService.updateUser(this.user).subscribe(user => {
+                for(let i =0; i< this.users.length;i++){
+                    if(this.users[i].id == user.id){
+                        this.users.splice(i,1);
+                    }
+                }
+                this.users.unshift(this.user);
+            })
+        }else{
+            this.dataService.addUser(this.user).subscribe(user => {
+                console.log("got response back as: ")
+                console.log(user);
+                this.users.unshift(user);//adds item at array begining
+            })
+        }
     }
     onDeleteClick(id){
         console.log(id);
@@ -65,5 +78,9 @@ export class SandboxComponent{
                 }
             }
         })
+    }
+    onEditClick(user){
+        this.isEdit=true;
+        this.user=user;
     }
 }
