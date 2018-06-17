@@ -1,30 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
-
+import { Http } from '@angular/http'
+import { map, catchError } from 'rxjs/operators'
 @Injectable()
 export class DataService{
     //Observables are ES7 open streams
-    data:Observable<Array<number>>;
+    //Inject dependencies in constructor
 
-    constructor(){
+
+    constructor(public http:Http){
 
     }
-
-    getData(){
-        this.data = new Observable(observer =>{
-            setTimeout(() =>{
-                observer.next([1]);
-            },1000);
-            setTimeout(() =>{
-                observer.next(2);
-            },2000);
-            setTimeout(() =>{
-                observer.next("Hello");
-            },3000);
-            setTimeout(() =>{
-                observer.complete();
-            },4000);
-        });
-        return this.data; 
+    getUsers(){
+        return this.http.get('https://jsonplaceholder.typicode.com/users').pipe(
+            map(res => res.json()),
+        );
     }
 }
